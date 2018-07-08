@@ -1,4 +1,4 @@
-package fr.tunaki.stackoverflow.chat;
+package org.sobotics.chatexchange.chat;
 
 import java.time.Instant;
 

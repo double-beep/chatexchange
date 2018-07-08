@@ -1,9 +1,9 @@
-package fr.tunaki.stackoverflow.chat.event;
+package org.sobotics.chatexchange.chat.event;
+
+import org.sobotics.chatexchange.chat.Room;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
-import fr.tunaki.stackoverflow.chat.Room;
 
 /**
  * Represents the event of starring / unstarring and pining / unpining a message. There is no distinction between starring and

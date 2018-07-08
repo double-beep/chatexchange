@@ -1,4 +1,4 @@
-package fr.tunaki.stackoverflow.chat;
+package org.sobotics.chatexchange.chat;
 
 /**
  * This class represents a valid chat host on the Stack Exchange network. There are 3 chat servers, which are <code>stackoverflow.com</code>,

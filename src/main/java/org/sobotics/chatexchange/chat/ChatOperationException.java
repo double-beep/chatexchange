@@ -1,4 +1,4 @@
-package fr.tunaki.stackoverflow.chat;
+package org.sobotics.chatexchange.chat;
 
 /**
  * Base exception for representing an exception during a processing of a chat operation.
