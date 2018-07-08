@@ -85,7 +85,7 @@ public class StackExchangeClient implements AutoCloseable {
 		String originalHost = host;
 		
 		if (host.equalsIgnoreCase(ChatHost.STACK_EXCHANGE.getName())) {
-			host = "meta.stackexchange.com";
+			host = ChatHost.META_STACK_EXCHANGE.getName();
 		}
 		
 		//The login-form has a hidden field called "fkey" which needs to be sent along with the mail and password
