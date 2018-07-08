@@ -11,6 +11,8 @@ import java.util.regex.Pattern;
 
 import org.jsoup.Connection.Response;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -56,6 +58,11 @@ public class StackExchangeClient implements AutoCloseable {
 	 * With OpenID, this was not necessary because we only had to login once while initializing `StackExchangeClient`
 	 * */
 	private String password = null;
+	
+	/**
+	 * true, if the account for a user should automatically be created when logging in to a new site
+	 */
+	private boolean autoCreateAccount = true;
 
 	/**
 	 * Constructs the client with the provided credentials. Those will be the credentials used to send messages.
@@ -75,17 +82,56 @@ public class StackExchangeClient implements AutoCloseable {
 	 * @param The host of the main site (NOT the chat.*! Use ChatHost.getName())
 	 * */
 	private void seLogin(String email, String password, String host) throws IOException {
+		String originalHost = host;
+		
+		if (host.equalsIgnoreCase(ChatHost.STACK_EXCHANGE.getName())) {
+			host = "meta.stackexchange.com";
+		}
+		
 		//The login-form has a hidden field called "fkey" which needs to be sent along with the mail and password
 		Response response = httpClient.get("https://"+host+"/users/login", cookies);
 		String fkey = response.parse().select("input[name='fkey']").val();
 		
 		response = httpClient.post("https://"+host+"/users/login", cookies, "email", email, "password", password, "fkey", fkey);
 		
+		//Create account on that site if necessary
+		Element formElement = response.parse().getElementById("logout-user");
+		if (formElement != null) {
+			if (!this.autoCreateAccount) {
+				throw new IllegalStateException("Unable to login to Stack Exchange. The user does not have an account on " + originalHost);
+			} // if autoCreate
+			
+			Elements formInputs = formElement.getElementsByTag("input");
+			List<String> formData = new ArrayList<>();
+			
+			for (Element input : formInputs) {
+				String key = input.attr("name");
+				String value = input.val();
+				
+				if (key == null || key.isEmpty())
+					continue;
+				
+				formData.add(key);
+				formData.add(value);
+			} // for formInputs
+			
+			String[] formDataArray = formData.toArray(new String[formData.size()]);
+			
+			String formUrl = "https://" + host + formElement.attr("action");
+			
+			Response formResponse = httpClient.post(formUrl, cookies, formDataArray);
+			if (formResponse.parse().getElementsByClass("js-inbox-button").first() == null) {
+				LOGGER.debug(formResponse.parse().html());
+				throw new IllegalStateException("Unable to create account on " + host + "! Please create the account manually.");
+			} // if
+		} // if
+		
+		
 		// check if login succeeded
-		Response checkResponse = httpClient.get("https://"+host+"/users/current", cookies);
+		Response checkResponse = httpClient.get("https://"+originalHost+"/users/current", cookies);
 		if (checkResponse.parse().getElementsByClass("js-inbox-button").first() == null) {
 			LOGGER.debug(checkResponse.parse().html());
-			throw new IllegalStateException("Unable to login to Stack Exchange. (Site: " + host + ")");
+			throw new IllegalStateException("Unable to login to Stack Exchange. (Site: " + originalHost + " via " + host + ")");
 		} // if
 	} // seLogin
 
@@ -184,6 +230,21 @@ public class StackExchangeClient implements AutoCloseable {
 			LOGGER.debug(response.parse().html());
 			throw new IllegalStateException("Unable to login to Stack Exchange.");
 		}
+	}
+
+	/**
+	 * true, if the account for a user should automatically be created when logging in to a new site
+	 */
+	public boolean getAutoCreateAccount() {
+		return autoCreateAccount;
+	}
+
+	/**
+	 * Controls, if the account for a user should automatically be created when logging in to a new site
+	 * @param autoCreateAccount new value
+	 */
+	public void setAutoCreateAccount(boolean autoCreateAccount) {
+		this.autoCreateAccount = autoCreateAccount;
 	}
 
 	/**
