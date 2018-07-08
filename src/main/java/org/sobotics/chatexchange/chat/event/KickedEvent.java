@@ -1,12 +1,12 @@
-package fr.tunaki.stackoverflow.chat.event;
+package org.sobotics.chatexchange.chat.event;
 
 import java.util.Optional;
 import java.util.stream.StreamSupport;
 
+import org.sobotics.chatexchange.chat.Room;
+
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
-import fr.tunaki.stackoverflow.chat.Room;
 
 /**
  * Represents an event resulting from a kick happening in the current room.

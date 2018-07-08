@@ -1,4 +1,4 @@
-package fr.tunaki.stackoverflow.chat;
+package org.sobotics.chatexchange.chat;
 
 /**
  * This class represents a chat message.

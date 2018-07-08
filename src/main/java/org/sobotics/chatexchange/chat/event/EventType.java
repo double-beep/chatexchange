@@ -1,4 +1,4 @@
-package fr.tunaki.stackoverflow.chat.event;
+package org.sobotics.chatexchange.chat.event;
 
 import java.util.HashMap;
 import java.util.Map;

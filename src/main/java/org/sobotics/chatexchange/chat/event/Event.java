@@ -1,4 +1,4 @@
-package fr.tunaki.stackoverflow.chat.event;
+package org.sobotics.chatexchange.chat.event;
 
 import java.time.Instant;
 import java.util.Optional;
@@ -6,11 +6,11 @@ import java.util.function.Function;
 import java.util.function.ToIntFunction;
 import java.util.function.ToLongFunction;
 
+import org.sobotics.chatexchange.chat.Room;
+import org.sobotics.chatexchange.chat.User;
+
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
-import fr.tunaki.stackoverflow.chat.Room;
-import fr.tunaki.stackoverflow.chat.User;
 
 /**
  * Base class for all events raised in chat.

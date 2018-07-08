@@ -1,4 +1,4 @@
-package fr.tunaki.stackoverflow.chat.event;
+package org.sobotics.chatexchange.chat.event;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,11 +8,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
+import org.sobotics.chatexchange.chat.Room;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
-import fr.tunaki.stackoverflow.chat.Room;
 
 /**
  * Utility class to operate on events.

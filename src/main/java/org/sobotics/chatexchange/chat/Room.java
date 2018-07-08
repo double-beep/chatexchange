@@ -1,4 +1,4 @@
-package fr.tunaki.stackoverflow.chat;
+package org.sobotics.chatexchange.chat;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -55,15 +55,14 @@ import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.sobotics.chatexchange.chat.event.Event;
+import org.sobotics.chatexchange.chat.event.EventType;
+import org.sobotics.chatexchange.chat.event.Events;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
-import fr.tunaki.stackoverflow.chat.event.Event;
-import fr.tunaki.stackoverflow.chat.event.EventType;
-import fr.tunaki.stackoverflow.chat.event.Events;
 
 public final class Room {
 

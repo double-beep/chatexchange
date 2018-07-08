@@ -1,4 +1,4 @@
-package fr.tunaki.stackoverflow.chat.event;
+package org.sobotics.chatexchange.chat.event;
 
 enum StackExchangeEventType {
 
