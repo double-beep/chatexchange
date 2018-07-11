@@ -102,6 +102,27 @@
 			<version>1.13.1</version>
 		</dependency>
 	</dependencies>
+	<licenses>
+		<license>
+			<name>Unilicense</name>
+			<url>https://raw.githubusercontent.com/SOBotics/chatexchange/master/LICENSE</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>tunaki</name>
+			<email>tunaki@sobotics.org</email>
+			<organization>SOBotics</organization>
+			<organizationUrl>https://sobotics.org</organizationUrl>
+		</developer>
+		<developer>
+			<name>FelixSFD</name>
+			<email>felixsfd@sobotics.org</email>
+			<organization>SOBotics</organization>
+			<organizationUrl>https://sobotics.org</organizationUrl>
+		</developer>
+	</developers>
 	<organization>
 		<name>SOBotics</name>
 		<url>https://sobotics.org</url>
