@@ -4,24 +4,13 @@ The purpose of this project is to provide a simple API to interact with the chat
 
 ## Maven dependency
 
-This library is currently hosted on GitHub. To depend on it, a repository needs to be added:
-
-```xml
-<repositories>
-  <repository>
-    <id>Tunaki-mvn-repo</id>
-    <url>https://raw.github.com/Tunaki/chatexchange/mvn-repo/</url>
-  </repository>
-</repositories>
-```
-
-The dependency is:
+Add this to your `pom.xml`
 
 ```xml
 <dependency>
-  <groupId>fr.tunaki.stackoverflow</groupId>
+  <groupId>org.sobotics</groupId>
   <artifactId>chatexchange</artifactId>
-  <version>1.1.1</version>
+  <version>2.0.0</version>
 </dependency>
 ```
 
