@@ -51,4 +51,4 @@ When making changes to an existing function, it would be nice, if you leave a co
 ## Fixing grammar and typos
 
 Since most of us are not native speakers in English, there are texts with wrong grammar or typos. It would be nice, if you fix them, when you found them, by forking the repository and creating a pull-request.
-You don't need to open an issue first, if you're just editing .md-files.
+You don't need to open an issue first, if you're just editing markdown files.
