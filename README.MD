@@ -1,6 +1,8 @@
+[![Build Status](https://travis-ci.org/SOBotics/chatexchange.svg?branch=develop)](https://travis-ci.org/SOBotics/chatexchange)
+
 # ChatExchange
 
-This Java library a simple API to interact with the chat system on Stack Overflow, and the Stack Exchange network.
+This Java library is a simple API to interact with the chat system on Stack Overflow, and the Stack Exchange network.
 
 ## Maven dependency
 
@@ -101,3 +103,8 @@ public static void main(String[] args) throws Exception {
 ```
 
 All of this processing happens in background threads. In this example, the main thread is kept waiting with a [`CountDownLatch`](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CountDownLatch.html) of 1. Once `"die"` is posted, it reaches 0 and the main thread closes the client, causing the bot to leave the room. 
+
+
+## How to contribute
+
+Contributions are always welcome. Before you start, please read these [guidelines](CONTRIBUTE.md).
