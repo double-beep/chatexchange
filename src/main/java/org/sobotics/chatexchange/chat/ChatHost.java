@@ -31,5 +31,17 @@ public enum ChatHost {
 	public String getBaseUrl() {
 		return baseUrl;
 	}
+	
+	/**
+	 * Compares the host to another object
+	 * @param otherHost other object
+	 * @return true, if the name is the same
+	 */
+	public boolean equals(ChatHost otherHost) {
+		if (otherHost == null)
+			return false;
+		
+		return this.name.equals(otherHost.name);
+	}
 
 }
