@@ -246,6 +246,14 @@ public class StackExchangeClient implements AutoCloseable {
 	public void setAutoCreateAccount(boolean autoCreateAccount) {
 		this.autoCreateAccount = autoCreateAccount;
 	}
+	
+	/**
+	 * Returns the cookies the library uses
+	 * @return Cookies
+	 */
+	public Map<String, String> getCookies() {
+		return this.cookies;
+	}
 
 	/**
 	 * Closes this client by making the logged-in user leave all the chat rooms they joined.
