@@ -69,7 +69,7 @@ public final class Room {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Room.class);
 
 	private static final String SUCCESS = "ok";
-	private static final Pattern TRY_AGAIN_PATTERN = Pattern.compile("You can perform this action again in (\\d+) seconds");
+	private static final Pattern TRY_AGAIN_PATTERN = Pattern.compile("You can perform this action again in (\\d+) second");
 	private static final Pattern CURRENT_USERS_PATTERN = Pattern.compile("\\{id:\\s?(\\d+),");
 	private static final Pattern MARKDOWN_LINK_PATTERN = Pattern.compile("\\[(\\\\]|[^\\]])+\\]\\((https?:)?//(\\\\\\)|\\\\\\(|[^\\s)(])+\\)"); // oh dear god
 	private static final Pattern FAILED_UPLOAD_PATTERN = Pattern.compile("var error = '(.+)';");
