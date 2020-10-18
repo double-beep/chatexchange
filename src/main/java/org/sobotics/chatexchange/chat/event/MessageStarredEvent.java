@@ -12,30 +12,30 @@ import com.google.gson.JsonObject;
  */
 public class MessageStarredEvent extends MessageEvent {
 
-	private boolean starred;
-	private boolean pinned;
+    private boolean starred;
+    private boolean pinned;
 
-	MessageStarredEvent(JsonElement jsonElement, Room room) {
-		super(jsonElement, room);
-		JsonObject jsonObject = jsonElement.getAsJsonObject();
-		starred = orDefault(jsonObject.get("message_starred"), false);
-		pinned = orDefault(jsonObject.get("message_owner_starred"), false);
-	}
+    MessageStarredEvent(JsonElement jsonElement, Room room) {
+        super(jsonElement, room);
+        JsonObject jsonObject = jsonElement.getAsJsonObject();
+        starred = orDefault(jsonObject.get("message_starred"), false);
+        pinned = orDefault(jsonObject.get("message_owner_starred"), false);
+    }
 
-	/**
-	 * Returns whether this event was as a result of the current logged-in user starring a message.
-	 * @return Whether this event was as a result of the current logged-in user starring a message.
-	 */
-	public boolean wasStarred() {
-		return starred;
-	}
+    /**
+     * Returns whether this event was as a result of the current logged-in user starring a message.
+     * @return Whether this event was as a result of the current logged-in user starring a message.
+     */
+    public boolean wasStarred() {
+        return starred;
+    }
 
-	/**
-	 * Returns whether this event was as a result of the current logged-in user pinning a message.
-	 * @return Whether this event was as a result of the current logged-in user pinning a message.
-	 */
-	public boolean wasPinned() {
-		return pinned;
-	}
+    /**
+     * Returns whether this event was as a result of the current logged-in user pinning a message.
+     * @return Whether this event was as a result of the current logged-in user pinning a message.
+     */
+    public boolean wasPinned() {
+        return pinned;
+    }
 
 }

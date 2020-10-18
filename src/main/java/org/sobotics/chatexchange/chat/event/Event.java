@@ -24,90 +24,90 @@ import com.google.gson.JsonObject;
  */
 public abstract class Event {
 
-	private Instant instant;
-	private long userId;
-	private String userName;
-	private Room room;
-	private User user;
+    private Instant instant;
+    private long userId;
+    private String userName;
+    private Room room;
+    private User user;
 
-	Event(JsonElement jsonElement, Room room) {
-		JsonObject jsonObject = jsonElement.getAsJsonObject();
-		instant = Instant.ofEpochSecond(jsonObject.get("time_stamp").getAsLong());
-		userId = orDefault(jsonObject.get("user_id"), 0, JsonElement::getAsLong);
-		userName = orDefault(jsonObject.get("user_name"), null, JsonElement::getAsString);
-		user = userId > 0 ? room.getUser(userId) : null;
-		this.room = room;
-	}
+    Event(JsonElement jsonElement, Room room) {
+        JsonObject jsonObject = jsonElement.getAsJsonObject();
+        instant = Instant.ofEpochSecond(jsonObject.get("time_stamp").getAsLong());
+        userId = orDefault(jsonObject.get("user_id"), 0, JsonElement::getAsLong);
+        userName = orDefault(jsonObject.get("user_name"), null, JsonElement::getAsString);
+        user = userId > 0 ? room.getUser(userId) : null;
+        this.room = room;
+    }
 
-	/**
-	 * Returns the instant in time (UTC) at which this event occured.
-	 * @return Instant in time (UTC) at which this event occured.
-	 */
-	public Instant getInstant() {
-		return instant;
-	}
+    /**
+     * Returns the instant in time (UTC) at which this event occured.
+     * @return Instant in time (UTC) at which this event occured.
+     */
+    public Instant getInstant() {
+        return instant;
+    }
 
-	/**
-	 * Returns the user that raised this event, at the time the event was raised.
-	 * <p>The returned user will not be updated with regards to, e.g, reputation changes that were made after this event.
-	 * If an updated user is needed, refer to {@link Room#getUser(long)}.
-	 * <p>For events where there was no registered user, or system generated event, this returns an empty <code>Optional</code>.
-	 * @return User that raised this event.
-	 */
-	public Optional<User> getUser() {
-		return Optional.ofNullable(user);
-	}
+    /**
+     * Returns the user that raised this event, at the time the event was raised.
+     * <p>The returned user will not be updated with regards to, e.g, reputation changes that were made after this event.
+     * If an updated user is needed, refer to {@link Room#getUser(long)}.
+     * <p>For events where there was no registered user, or system generated event, this returns an empty <code>Optional</code>.
+     * @return User that raised this event.
+     */
+    public Optional<User> getUser() {
+        return Optional.ofNullable(user);
+    }
 
-	/**
-	 * Returns the id of the user that raised this event.
-	 * <p>For system generated event, the id will be strictly negative. For events where there was
-	 * no registered user, this will be 0.
-	 * @return Id of the user that raised this event.
-	 * @see #getUser()
-	 */
-	public long getUserId() {
-		return userId;
-	}
+    /**
+     * Returns the id of the user that raised this event.
+     * <p>For system generated event, the id will be strictly negative. For events where there was
+     * no registered user, this will be 0.
+     * @return Id of the user that raised this event.
+     * @see #getUser()
+     */
+    public long getUserId() {
+        return userId;
+    }
 
-	/**
-	 * Returns the display name of the user that raised this event. This can be <code>null</code> under unreproducible conditions.
-	 * @return Display name of the user that raised this event.
-	 */
-	public String getUserName() {
-		return userName;
-	}
+    /**
+     * Returns the display name of the user that raised this event. This can be <code>null</code> under unreproducible conditions.
+     * @return Display name of the user that raised this event.
+     */
+    public String getUserName() {
+        return userName;
+    }
 
-	/**
-	 * The room this event took place.
-	 * @return Room this event took place.
-	 */
-	public Room getRoom() {
-		return room;
-	}
+    /**
+     * The room this event took place.
+     * @return Room this event took place.
+     */
+    public Room getRoom() {
+        return room;
+    }
 
-	/**
-	 * Returns the ID of the room this event took place. This is a short-hand for {@link Room#getRoomId()}
-	 * @return ID of the room this event took place.
-	 * @see #getRoom()
-	 */
-	public int getRoomId() {
-		return room.getRoomId();
-	}
+    /**
+     * Returns the ID of the room this event took place. This is a short-hand for {@link Room#getRoomId()}
+     * @return ID of the room this event took place.
+     * @see #getRoom()
+     */
+    public int getRoomId() {
+        return room.getRoomId();
+    }
 
-	protected <T> T orDefault(JsonElement element, T defaultValue, Function<JsonElement, T> function) {
-		return element == null ? defaultValue : function.apply(element);
-	}
+    protected <T> T orDefault(JsonElement element, T defaultValue, Function<JsonElement, T> function) {
+        return element == null ? defaultValue : function.apply(element);
+    }
 
-	protected int orDefault(JsonElement element, int defaultValue, ToIntFunction<JsonElement> function) {
-		return element == null ? defaultValue : function.applyAsInt(element);
-	}
+    protected int orDefault(JsonElement element, int defaultValue, ToIntFunction<JsonElement> function) {
+        return element == null ? defaultValue : function.applyAsInt(element);
+    }
 
-	protected long orDefault(JsonElement element, long defaultValue, ToLongFunction<JsonElement> function) {
-		return element == null ? defaultValue : function.applyAsLong(element);
-	}
+    protected long orDefault(JsonElement element, long defaultValue, ToLongFunction<JsonElement> function) {
+        return element == null ? defaultValue : function.applyAsLong(element);
+    }
 
-	protected boolean orDefault(JsonElement element, boolean defaultValue) {
-		return element == null ? defaultValue : element.getAsBoolean();
-	}
+    protected boolean orDefault(JsonElement element, boolean defaultValue) {
+        return element == null ? defaultValue : element.getAsBoolean();
+    }
 
 }

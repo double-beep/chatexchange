@@ -7,41 +7,43 @@ package org.sobotics.chatexchange.chat;
  */
 public enum ChatHost {
 
-	STACK_OVERFLOW("stackoverflow.com"),
-	STACK_EXCHANGE("stackexchange.com"),
-	META_STACK_EXCHANGE("meta.stackexchange.com");
+    STACK_OVERFLOW("stackoverflow.com"),
+    STACK_EXCHANGE("stackexchange.com"),
+    META_STACK_EXCHANGE("meta.stackexchange.com");
 
-	private final String name, baseUrl;
+    private final String name;
+    private final String baseUrl;
 
-	private ChatHost(String name) {
-		this.name = name;
-		this.baseUrl = "https://chat." + name;
-	}
+    ChatHost(String name) {
+        this.name = name;
+        this.baseUrl = "https://chat." + name;
+    }
 
-	/**
-	 * @return The name of the chat server this host represents (example: <code>stackoverflow.com</code>).
-	 */
-	public String getName() {
-		return name;
-	}
+    /**
+     * @return The name of the chat server this host represents (example: <code>stackoverflow.com</code>).
+     */
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * @return The base URL that points to this chat server (example: <code>https://chat.stackoverflow.com</code>).
-	 */
-	public String getBaseUrl() {
-		return baseUrl;
-	}
-	
-	/**
-	 * Compares the host to another object
-	 * @param otherHost other object
-	 * @return true, if the name is the same
-	 */
-	public boolean equals(ChatHost otherHost) {
-		if (otherHost == null)
-			return false;
-		
-		return this.name.equals(otherHost.name);
-	}
+    /**
+     * @return The base URL that points to this chat server (example: <code>https://chat.stackoverflow.com</code>).
+     */
+    public String getBaseUrl() {
+        return baseUrl;
+    }
+
+    /**
+     * Compares the host to another object
+     * @param otherHost other object
+     * @return true, if the name is the same
+     */
+    public boolean equals(ChatHost otherHost) {
+        if (otherHost == null) {
+            return false;
+        }
+
+        return this.name.equals(otherHost.name);
+    }
 
 }

@@ -10,8 +10,8 @@ import com.google.gson.JsonElement;
  */
 public class UserMentionedEvent extends PingMessageEvent {
 
-	UserMentionedEvent(JsonElement jsonElement, Room room) {
-		super(jsonElement, room);
-	}
+    UserMentionedEvent(JsonElement jsonElement, Room room) {
+        super(jsonElement, room);
+    }
 
 }

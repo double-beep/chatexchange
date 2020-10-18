@@ -28,14 +28,14 @@ enum StackExchangeEventType {
     USER_MERGED(30),
     USER_NAME_OR_AVATAR_CHANGED(34);
 
-	private final int code;
+    private final int code;
 
-	private StackExchangeEventType(int code) {
-		this.code = code;
-	}
+    StackExchangeEventType(int code) {
+        this.code = code;
+    }
 
-	public int getCode() {
-		return code;
-	}
+    public int getCode() {
+        return code;
+    }
 
 }

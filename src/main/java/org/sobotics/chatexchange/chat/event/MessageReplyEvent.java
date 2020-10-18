@@ -10,8 +10,8 @@ import com.google.gson.JsonElement;
  */
 public class MessageReplyEvent extends PingMessageEvent {
 
-	MessageReplyEvent(JsonElement jsonElement, Room room) {
-		super(jsonElement, room);
-	}
+    MessageReplyEvent(JsonElement jsonElement, Room room) {
+        super(jsonElement, room);
+    }
 
 }

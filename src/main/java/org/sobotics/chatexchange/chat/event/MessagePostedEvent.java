@@ -10,8 +10,8 @@ import com.google.gson.JsonElement;
  */
 public class MessagePostedEvent extends MessageEvent {
 
-	MessagePostedEvent(JsonElement jsonElement, Room room) {
-		super(jsonElement, room);
-	}
+    MessagePostedEvent(JsonElement jsonElement, Room room) {
+        super(jsonElement, room);
+    }
 
 }

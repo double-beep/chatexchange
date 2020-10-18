@@ -14,28 +14,29 @@ import com.google.gson.JsonObject;
  */
 public class KickedEvent extends Event {
 
-	private long kickeeId;
+    private long kickeeId;
 
-	KickedEvent(JsonElement jsonElement, Room room) {
-		super(getMasterJsonObject(jsonElement), room);
-		JsonObject other = getJsonObjectForType(jsonElement, 4).orElseThrow(AssertionError::new);
-		kickeeId = other.get("user_id").getAsLong();
-	}
+    KickedEvent(JsonElement jsonElement, Room room) {
+        super(getMasterJsonObject(jsonElement), room);
+        JsonObject other = getJsonObjectForType(jsonElement, 4).orElseThrow(AssertionError::new);
+        kickeeId = other.get("user_id").getAsLong();
+    }
 
-	private static JsonObject getMasterJsonObject(JsonElement jsonElement) {
-		return getJsonObjectForType(jsonElement, 15).orElseThrow(AssertionError::new);
-	}
+    private static JsonObject getMasterJsonObject(JsonElement jsonElement) {
+        return getJsonObjectForType(jsonElement, 15).orElseThrow(AssertionError::new);
+    }
 
-	private static Optional<JsonObject> getJsonObjectForType(JsonElement jsonElement, int type) {
-		return StreamSupport.stream(jsonElement.getAsJsonArray().spliterator(), false).map(JsonElement::getAsJsonObject).filter(e -> e.get("event_type").getAsInt() == type).findFirst();
-	}
+    private static Optional<JsonObject> getJsonObjectForType(JsonElement jsonElement, int type) {
+        return StreamSupport.stream(jsonElement.getAsJsonArray().spliterator(), false).map(JsonElement::getAsJsonObject)
+                                               .filter(e -> e.get("event_type").getAsInt() == type).findFirst();
+    }
 
-	/**
-	 * Returns the id of the user that was kicked.
-	 * @return Id of the user that was kicked.
-	 */
-	public long getKickeeId() {
-		return kickeeId;
-	}
+    /**
+     * Returns the id of the user that was kicked.
+     * @return Id of the user that was kicked.
+     */
+    public long getKickeeId() {
+        return kickeeId;
+    }
 
 }

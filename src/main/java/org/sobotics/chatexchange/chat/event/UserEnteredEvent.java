@@ -11,8 +11,8 @@ import com.google.gson.JsonElement;
  */
 public class UserEnteredEvent extends Event {
 
-	UserEnteredEvent(JsonElement jsonElement, Room room) {
-		super(jsonElement, room);
-	}
+    UserEnteredEvent(JsonElement jsonElement, Room room) {
+        super(jsonElement, room);
+    }
 
 }
