@@ -141,7 +141,7 @@ public final class Room {
 		}
 		String body = response.body();
 		if (response.statusCode() == 200) {
-			return new JsonParser().parse(body);
+			return JsonParser.parseString(body);
 		}
 		Matcher matcher = TRY_AGAIN_PATTERN.matcher(body);
 		if (retryCount > 0 && matcher.find()) {
@@ -224,7 +224,7 @@ public final class Room {
 	private void handleChatEvent(String json) {
 		LOGGER.debug("Received message: {}", json);
 		lastWebsocketMessageDate = LocalDateTime.now();
-		JsonObject jsonObject = new JsonParser().parse(json).getAsJsonObject();
+		JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 		jsonObject.entrySet().stream().filter(e -> e.getKey().equals("r" + roomId)).map(Map.Entry::getValue).map(JsonElement::getAsJsonObject).map(o -> o.get("e")).filter(Objects::nonNull).map(JsonElement::getAsJsonArray).findFirst().ifPresent(events -> {
 			for (Event event : Events.fromJsonData(events, this)) {
 				for (Consumer<Object> listener : chatEventListeners.getOrDefault(EventType.fromEvent(event), Collections.emptyList())) {
@@ -532,7 +532,7 @@ public final class Room {
 		} catch (IOException e) {
 			throw new ChatOperationException(e);
 		}
-		JsonArray array = new JsonParser().parse(json).getAsJsonArray();
+		JsonArray array = JsonParser.parseString(json).getAsJsonArray();
 		pingableUserIds = StreamSupport.stream(array.spliterator(), false).map(e -> e.getAsJsonArray().get(0).getAsLong()).collect(Collectors.toList());
 	}
 
@@ -606,7 +606,7 @@ public final class Room {
 		} catch (IOException e) {
 			throw new ChatOperationException(e);
 		}
-		JsonObject obj = new JsonParser().parse(json).getAsJsonObject();
+		JsonObject obj = JsonParser.parseString(json).getAsJsonObject();
 		List<String> tags = Jsoup.parse(obj.get("tags").getAsString()).getElementsByTag("a").stream().map(Element::html).collect(Collectors.toList());
 		return new RoomThumbs(obj.get("id").getAsInt(), obj.get("name").getAsString(), obj.get("description").getAsString(), obj.get("isFavorite").getAsBoolean(), tags);
 	}
